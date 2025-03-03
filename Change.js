@@ -1,5 +1,6 @@
 // Change.js  
-import React, { useState } from 'react';  
+import React, { useState } from 'react'; 
+import { saveTrackingData } from './Storage'; 
 
 function Change({ eventToEdit, onUpdateEvent, onClose }) {  
   const [inputValue, setInputValue] = useState(eventToEdit.name);  
@@ -24,6 +25,7 @@ function Change({ eventToEdit, onUpdateEvent, onClose }) {
       parameters: selectedOptions,  
     };  
     onUpdateEvent(updatedEvent);  
+    saveTrackingData(updatedEvent);
   };  
 
   return (  
@@ -52,7 +54,7 @@ function Change({ eventToEdit, onUpdateEvent, onClose }) {
         </div>  
         <div>  
           <p>事件参数:</p>  
-          {["A", "B", "C", "D"].map(option => (  
+          {["浏览器版本", "操作系统", "uid", "上报时间"].map(option => (  
             <label key={option}>  
               <input  
                 type="checkbox"  
